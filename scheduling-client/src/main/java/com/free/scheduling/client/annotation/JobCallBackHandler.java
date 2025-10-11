@@ -37,7 +37,7 @@ public class JobCallBackHandler implements ApplicationContextAware {
                             .interfaceName(scheduleCallBack.interfaceName())
                             .method(scheduleCallBack.method())
                             .paramTypes(Arrays.stream(parameterTypes).map(Class::getName).toList().toArray(new String[0]))
-                            .returnType(method.getReturnType())
+                            .extParam(scheduleCallBack.extParam())
                             .build());
                     break;
                 }

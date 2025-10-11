@@ -1,5 +1,6 @@
 package com.free.scheduling.core;
 
+import com.free.scheduling.api.base.SchedulingUpdateRpcRequest;
 import com.free.scheduling.api.dto.RegisterJobDetailRpcRequest;
 import com.free.scheduling.api.dto.RegisterJobRpcRequest;
 
@@ -23,5 +24,11 @@ public interface SchedulingTriggerService {
      * @return
      */
     boolean exec(RegisterJobDetailRpcRequest request);
+    /**
+     * 更新任务
+     * @param request
+     * @return
+     */
+    boolean update(SchedulingUpdateRpcRequest request);
 
 }

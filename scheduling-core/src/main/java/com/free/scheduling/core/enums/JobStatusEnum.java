@@ -2,6 +2,8 @@ package com.free.scheduling.core.enums;
 
 import lombok.Getter;
 
+import java.util.Map;
+
 /**
  * @author funanbing
  * @date 2025-10-10 09:42:28
@@ -20,4 +22,10 @@ public enum JobStatusEnum {
         this.code = code;
         this.msg = msg;
     }
+
+    public final static Map<Integer,JobStatusEnum> statusMap = Map.of(
+            RUNNING.getCode(),RUNNING,
+            STOP.getCode(),STOP,
+            DELETE.getCode(),DELETE
+    );
 }

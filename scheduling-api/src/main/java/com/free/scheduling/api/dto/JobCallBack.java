@@ -37,7 +37,7 @@ public class JobCallBack implements Serializable {
      */
     private Object[] args;
     /**
-     * 返回类型
+     * 额外的参数
      */
-    private Class<?> returnType;
+    private String extParam;
 }

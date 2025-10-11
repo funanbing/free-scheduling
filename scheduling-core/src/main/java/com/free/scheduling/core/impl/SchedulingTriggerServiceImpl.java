@@ -1,5 +1,10 @@
 package com.free.scheduling.core.impl;
 
+import com.alibaba.fastjson2.JSONObject;
+import com.alibaba.fastjson2.TypeReference;
+import com.free.scheduling.api.base.JobDetailRpcDTO;
+import com.free.scheduling.api.base.RpcResponse;
+import com.free.scheduling.api.base.SchedulingUpdateRpcRequest;
 import com.free.scheduling.api.dto.RegisterJobDetailRpcRequest;
 import com.free.scheduling.api.dto.RegisterJobRpcRequest;
 import com.free.scheduling.core.SchedulingTriggerService;
@@ -90,15 +95,32 @@ public class SchedulingTriggerServiceImpl implements SchedulingTriggerService {
         return true;
     }
 
+    @Override
+    public boolean update(SchedulingUpdateRpcRequest request) {
+        if (jobInfoMap.containsKey(request.getJobId())) {
+            JobInfo jobInfo = jobInfoMap.get(request.getJobId());
+            jobInfo.setStatus(request.getStatus());
+            if ((JobStatusEnum.DELETE.getCode().equals(request.getStatus())
+                    || JobStatusEnum.STOP.getCode().equals(request.getStatus()))
+                    && !CollectionUtils.isEmpty(execJobDetailQueue)) {
+                for (JobDetail jobDetail : execJobDetailQueue) {
+                    // TODO 加分布式锁
+                    if (jobDetail.getJobId().equals(jobInfo.getJobId())) {
+                        execJobDetailQueue.remove(jobDetail);
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     private void runExecJobDetail() {
         scheduledExecutorService.scheduleAtFixedRate(() -> {
-            System.out.println("poll jobDetail");
             while (!CollectionUtils.isEmpty(execJobDetailQueue)) {
                 JobDetail jobDetail = execJobDetailQueue.poll();
                 if (Objects.isNull(jobDetail)) {
                     continue;
                 }
-                System.out.println("exec jobDetail :"+jobDetail.getJobDetailId());
                 JobInfo jobInfo = jobInfoMap.get(jobDetail.getJobId());
                 if (Objects.nonNull(jobInfo) && JobStatusEnum.RUNNING.getCode().equals(jobInfo.getStatus())) {
                     long now = System.currentTimeMillis()/1000;
@@ -111,7 +133,14 @@ public class SchedulingTriggerServiceImpl implements SchedulingTriggerService {
                             Object object = null;
                             try {
                                 object = future.get(2, TimeUnit.SECONDS);
-                                System.out.println("exec jobDetail :"+jobDetail.getJobDetailId()+" result:"+object);
+                                RpcResponse<JobDetailRpcDTO> response = JSONObject.parseObject(JSONObject.toJSONString(object), new TypeReference<>() {});
+                                if (response.getCode() == 200 && response.getData().isNext()) {
+                                    execJobDetailQueue.add(JobDetail.builder()
+                                            .jobId(jobDetail.getJobId())
+                                            .jobDetailId(jobDetail.getJobDetailId())
+                                            .execTime(response.getData().getExecTime())
+                                            .build());
+                                }
                             } catch (Exception e) {
                                 throw new RuntimeException(e);
                             }

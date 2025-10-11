@@ -25,11 +25,7 @@ public class SchedulingUpdateRpcRequest implements Serializable {
      */
     private String jobId;
     /**
-     * 任务类型
+     * 任务状态
      */
-    private Integer jobType;
-    /**
-     * 执行时间
-     */
-    private Long time;
+    private Integer status;
 }
