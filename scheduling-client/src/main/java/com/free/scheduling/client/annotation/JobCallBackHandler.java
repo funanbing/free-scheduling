@@ -5,7 +5,6 @@ import com.free.scheduling.client.util.JobCallBackUtil;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -15,7 +14,6 @@ import java.util.Arrays;
  * @date 2025-10-10 15:21:55
  * @description
  */
-@Component
 public class JobCallBackHandler implements ApplicationContextAware {
 
 
