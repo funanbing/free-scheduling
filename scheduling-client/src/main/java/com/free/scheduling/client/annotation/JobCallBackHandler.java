@@ -40,7 +40,6 @@ public class JobCallBackHandler implements ApplicationContextAware {
                     break;
                 }
             }
-
         }
     }
 }
