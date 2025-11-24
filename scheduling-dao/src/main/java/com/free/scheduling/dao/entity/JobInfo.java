@@ -1,9 +1,7 @@
 package com.free.scheduling.dao.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -74,4 +72,19 @@ public class JobInfo implements Serializable {
      */
     @Column(name = "update_time")
     private LocalDateTime updateTime;
+
+    // 添加了以下构造函数
+    public JobInfo() {
+    }
+
+    public JobInfo(Long id, String jobName, String jobCode, Integer jobType, Integer status, String remark, LocalDateTime createTime) {
+        this.id = id;
+        this.jobName = jobName;
+        this.jobCode = jobCode;
+        this.jobType = jobType;
+        this.status = status;
+        this.remark = remark;
+        this.createTime = createTime;
+}
+
 }

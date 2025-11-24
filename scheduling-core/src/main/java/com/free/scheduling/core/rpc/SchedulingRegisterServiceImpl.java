@@ -23,11 +23,9 @@ public class SchedulingRegisterServiceImpl implements SchedulingRegisterService 
 
     @Override
     public RpcResponse<RegisterJobRpcResponse> register(RegisterJobRpcRequest request) {
-        request.setJobId(StringUtils.isBlank(request.getJobId()) ? IdUtil.getId() : request.getJobId());
-        boolean trigger = schedulingTriggerService.trigger(request);
-        // TODO 数据入库 mysql redis
-        return trigger ?
-                RpcResponse.success(RegisterJobRpcResponse.builder().jobId(request.getJobId()).build()) :
+        boolean registerJob = schedulingTriggerService.registerJob(request);
+        return registerJob ?
+                RpcResponse.success(RegisterJobRpcResponse.builder().jobInfoId(request.getJobInfoId()).build()) :
                 RpcResponse.fail(500, "register job fail");
     }
 }

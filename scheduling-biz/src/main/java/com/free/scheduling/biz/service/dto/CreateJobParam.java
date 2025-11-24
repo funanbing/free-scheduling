@@ -3,9 +3,8 @@ package com.free.scheduling.biz.service.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -17,6 +16,9 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CreateJobParam implements Serializable {
     @Serial
     private static final long serialVersionUID = -8211016658013891811L;

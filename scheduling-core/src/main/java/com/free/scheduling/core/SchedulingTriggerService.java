@@ -16,14 +16,14 @@ public interface SchedulingTriggerService {
      * @param request
      * @return
      */
-    boolean trigger(RegisterJobRpcRequest request);
+    boolean registerJob(RegisterJobRpcRequest request);
 
     /**
      * 执行任务
      * @param request
      * @return
      */
-    boolean exec(RegisterJobDetailRpcRequest request);
+    boolean registerJobDetail(RegisterJobDetailRpcRequest request);
     /**
      * 更新任务
      * @param request

@@ -22,11 +22,19 @@ public class RegisterJobDetailRpcRequest implements Serializable {
     /**
      * 任务id
      */
-    private String jobId;
+    private Long jobInfoId;
     /**
-     * 任务详情id
+     * 任务详情名称
      */
-    private String jobDetailId;
+    private String jobDetailName;
+    /**
+     * 任务详情Code
+     */
+    private String jobDetailCode;
+    /**
+     * 任务详情描述
+     */
+    private String remark;
     /**
      * 执行时间
      */

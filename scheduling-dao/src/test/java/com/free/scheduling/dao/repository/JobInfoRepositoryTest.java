@@ -37,7 +37,7 @@ class JobInfoRepositoryTest {
         JobInfo jobInfo = new JobInfo();
         jobInfo.setId(1L);
         jobInfo.setJobName("testJob");
-        jobInfo.setDesc("Test job description");
+        jobInfo.setRemark("Test job description");
         jobInfo.setStatus(1);
         jobInfo.setDeleted(0);
         jobInfo.setCreateTime(LocalDateTime.now());
@@ -52,7 +52,7 @@ class JobInfoRepositoryTest {
         assertThat(savedJobInfo).isNotNull();
         assertThat(savedJobInfo.getId()).isEqualTo(1L);
         assertThat(savedJobInfo.getJobName()).isEqualTo("testJob");
-        assertThat(savedJobInfo.getDesc()).isEqualTo("Test job description");
+        assertThat(savedJobInfo.getRemark()).isEqualTo("Test job description");
         assertThat(savedJobInfo.getStatus()).isEqualTo(1);
         assertThat(savedJobInfo.getDeleted()).isEqualTo(0);
 
@@ -66,7 +66,7 @@ class JobInfoRepositoryTest {
         JobInfo jobInfo = new JobInfo();
         jobInfo.setId(1L);
         jobInfo.setJobName("testJob");
-        jobInfo.setDesc("Test job description");
+        jobInfo.setRemark("Test job description");
         jobInfo.setStatus(1);
         jobInfo.setDeleted(0);
         jobInfo.setCreateTime(LocalDateTime.now());

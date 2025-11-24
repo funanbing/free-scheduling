@@ -23,7 +23,7 @@ public class SchedulingUpdateRpcRequest implements Serializable {
     /**
      * 任务id
      */
-    private String jobId;
+    private Long jobInfoId;
     /**
      * 任务状态
      */

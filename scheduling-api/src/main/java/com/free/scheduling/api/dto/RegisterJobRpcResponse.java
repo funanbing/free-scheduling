@@ -23,5 +23,5 @@ public class RegisterJobRpcResponse implements Serializable {
     /**
      * 任务id
      */
-    private String jobId;
+    private Long jobInfoId;
 }

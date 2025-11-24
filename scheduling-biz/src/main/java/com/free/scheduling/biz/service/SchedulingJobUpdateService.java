@@ -4,6 +4,7 @@ import com.free.scheduling.biz.service.base.ResponseEntity;
 import com.free.scheduling.biz.service.dto.CreateJobParam;
 import com.free.scheduling.biz.service.dto.DelJobParam;
 import com.free.scheduling.biz.service.dto.ModifyJobParam;
+import com.free.scheduling.dao.entity.JobInfo;
 
 /**
  * @author funanbing
@@ -33,5 +34,10 @@ public interface SchedulingJobUpdateService {
      */
     ResponseEntity<Boolean> modifyJob(ModifyJobParam param);
 
-
+    /**
+     * 注册任务
+     * @param param
+     * @return
+     */
+    Long registerJob(CreateJobParam param);
 }

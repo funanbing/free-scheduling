@@ -23,7 +23,11 @@ public class RegisterJobRpcRequest implements Serializable {
     /**
      * 任务ID
      */
-    private String jobId;
+    private Long jobInfoId;
+    /**
+     * 任务编码
+     */
+    private String jobCode;
 
     /**
      * 任务名称
@@ -33,13 +37,16 @@ public class RegisterJobRpcRequest implements Serializable {
     /**
      * 任务类型
      */
-    private String jobType;
+    private Integer jobType;
 
     /**
      * 任务状态
      */
     private Integer status;
-
+    /**
+     * 任务描述
+     */
+    private String remark;
     /**
      * 回调方法
      */

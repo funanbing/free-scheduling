@@ -1,5 +1,7 @@
 package com.free.scheduling.biz.service.dto;
 
+import lombok.*;
+
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -8,6 +10,12 @@ import java.io.Serializable;
  * @date 2025-11-14 13:53:35
  * @description
  */
+@Setter
+@Getter
+@ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ModifyJobParam implements Serializable {
     @Serial
     private static final long serialVersionUID = 6648607346041610762L;
@@ -28,35 +36,4 @@ public class ModifyJobParam implements Serializable {
      */
     private String remark;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getJobName() {
-        return jobName;
-    }
-
-    public void setJobName(String jobName) {
-        this.jobName = jobName;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
 }

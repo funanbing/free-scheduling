@@ -1,5 +1,6 @@
 package com.free.scheduling.biz.service.base;
 
+import com.free.schedling.common.enums.ErrorCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,10 +25,13 @@ public class ResponseEntity<T> implements Serializable {
 
     private T data;
 
+    private boolean success;
+
     public static <T> ResponseEntity<T> success(T data) {
         ResponseEntity<T> response = new ResponseEntity<>();
         response.setCode(200);
         response.setData(data);
+        response.setSuccess(true);
         return response;
     }
 
@@ -35,6 +39,15 @@ public class ResponseEntity<T> implements Serializable {
         ResponseEntity<T> response = new ResponseEntity<>();
         response.setCode(code);
         response.setMsg(msg);
+        response.setSuccess(code == 200);
+        return response;
+    }
+
+    public static <T> ResponseEntity<T> fail(ErrorCode errorCode) {
+        ResponseEntity<T> response = new ResponseEntity<>();
+        response.setCode(errorCode.getCode());
+        response.setMsg(errorCode.getErrorMsg());
+        response.setSuccess(errorCode.getCode() == 200);
         return response;
     }
 }

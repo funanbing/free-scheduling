@@ -22,15 +22,5 @@
             <artifactId>scheduling-core</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.free.scheduling</groupId>
-            <artifactId>scheduling-client</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.free.scheduling</groupId>
-            <artifactId>scheduling-biz</artifactId>
-            <version>${project.version}</version>
-        </dependency>
     </dependencies>
 </project>
